@@ -1,6 +1,6 @@
 import argparse
 
-DATA_FOLDER = "ROOT_FOLDER"
+DATA_FOLDER = "F:/Project/CZSL/code/IVR/IVR"
 
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
@@ -21,7 +21,7 @@ parser.add_argument('--seed', type=int, default=0, help='seed')
 # Model parameters
 parser.add_argument('--emb_dim', type=int, default=300, help='dimension of share embedding space')
 parser.add_argument('--nlayers', type=int, default=3, help='Layers in the image embedder')
-parser.add_argument('--bias', type=float, default=1e3, help='Bias value for unseen concepts')
+parser.add_argument('--bias', type=float, default=0, help='Bias value for unseen concepts')
 parser.add_argument('--update_features', action = 'store_true', default=False, help='If specified, train feature extractor')
 parser.add_argument('--cosine_scale', type=float, default=20,help="Scale for cosine similarity")
 parser.add_argument('--drop', type=float,default=5/6, help='drop rate')

@@ -23,6 +23,7 @@ class ImageLoader:
         self.root_dir = root
 
     def __call__(self, img):
+        # print(self.root_dir, img)
         img = Image.open(ospj(self.root_dir,img)).convert('RGB')
         return img
 
@@ -148,13 +149,8 @@ class CompositionDataset(Dataset):
     def generate_features(self, out_file, model):
         data = ospj(self.root,'images')
         files_before = glob(ospj(data, '**', '*.jpg'), recursive=True)
-        files_all = []
-        for current in files_before:
-            parts = current.split('/')
-            if "cgqa" in self.root:
-                files_all.append(parts[-1])
-            else:
-                files_all.append(os.path.join(parts[-2],parts[-1]))
+        files_all = [os.path.relpath(f, start=data) for f in files_before]
+
         transform = dataset_transform('test')
         feat_extractor = get_image_extractor(arch = model).eval()
         feat_extractor = feat_extractor.to(device)

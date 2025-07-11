@@ -1,4 +1,6 @@
 import torch
+import sys
+sys.argv += ['--config', 'configs/German.yml']
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
@@ -43,6 +45,8 @@ def main():
 
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
+
+    # print(DATA_FOLDER,args.data_dir)
 
     trainset = dset.CompositionDataset(
         root=os.path.join(DATA_FOLDER, args.data_dir),
